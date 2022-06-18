@@ -27,6 +27,7 @@ function displayLibrary() {
     const author = document.createElement('td');
     const pages = document.createElement('td');
     const read = document.createElement('td');
+    const buttonsCell = document.createElement('td');
     const removeBook = document.createElement('button');
     const toggleRead = document.createElement('button');
 
@@ -34,8 +35,8 @@ function displayLibrary() {
     author.textContent = book.author;
     pages.textContent = book.pages;
     read.textContent = book.read;
-    removeBook.textContent = 'Remove';
-    toggleRead.textContent = 'Change status';
+    removeBook.textContent = '🗑';
+    toggleRead.textContent = '🕮';
 
     row.setAttribute('id', `row-${index}`);
     row.setAttribute('data-row-num', `${index}`)
@@ -43,6 +44,7 @@ function displayLibrary() {
     author.setAttribute('id', `author-${index}`);
     pages.setAttribute('id', `pages-${index}`);
     read.setAttribute('id', `read-${index}`);
+    buttonsCell.setAttribute('id', `buttons-${index}`);
     removeBook.setAttribute('data-row-num', `${index}`);
     toggleRead.setAttribute('data-row-num', `${index}`);
 
@@ -55,8 +57,9 @@ function displayLibrary() {
     tr.appendChild(author);
     tr.appendChild(pages);
     tr.appendChild(read);
-    tr.appendChild(removeBook);
-    tr.appendChild(toggleRead);
+    tr.appendChild(buttonsCell)
+    buttonsCell.appendChild(removeBook);
+    buttonsCell.appendChild(toggleRead);
   })
 }
 
@@ -67,11 +70,6 @@ addBookToLibrary(siddhartha);
 addBookToLibrary(aneantir);
 addBookToLibrary(gallico);
 displayLibrary();
-
-// const newBook = document.querySelector('.add-book');
-// newBook.addEventListener('click', function(e) {
-
-// });
 
 const form = document.querySelector('#form-add-book');
 form.addEventListener('submit', addBook);
@@ -86,6 +84,11 @@ function addBook(e) {
   displayLibrary();
   e.preventDefault();
 };
+
+const showForm = document.querySelector('.add-book');
+showForm.addEventListener('click', function(e) {
+  form.style.display = 'block';
+});
 
 function deleteBook(e) {
   myLibrary.splice(`${e.target.dataset.rowNum}`, 1);

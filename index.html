@@ -8,54 +8,57 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1 class="title">Library</h1>
-  <table id="library">
-    <caption>My Books</caption>
-      <thead>
-        <tr>
-          <th scope="col">Title</th>
-          <th scope="col">Author</th>
-          <th scope="col">Pages</th>
-          <th scope="col">Read</th>
-        </tr>
-      </thead>
-      <tbody>
-      </tbody>
-  </table>
-  <button type="button" class="add-book">NEW BOOK</button>
-  <form id="form-add-book" name="form-add-book">
-    <h2 class="add-book">Add a new book</h2>
-    <div class="title">
-      <label for="title">Title</label>
-      <input type="text" name="title" id="title" required>
-    </div>
-      
-    <div class="author">
-      <label for="author">Author</label>
-      <input type="text" name="author" id="author" required>
-    </div>
+  <div class="container">
+    <h1 class="title">Library</h1>
+    <table id="library">
+      <caption>My Books</caption>
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Pages</th>
+            <th scope="col">Read</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <button type="button" class="add-book">NEW BOOK</button>
+    <form id="form-add-book" name="form-add-book">
+      <h2 class="add-book">Add a new book</h2>
+      <div class="wrapper">
+        <div class="title">
+          <label for="title">Title</label>
+          <input type="text" name="title" id="title" required>
+        </div>
     
-    <div class="pages">
-      <label for="pages">Pages</label>
-      <input type="number" name="pages" id="pages"></div>
-    </div>
-
-    <fieldset>
-      <legend>Have you finished the book?</legend>
-
-      <div class="read">
-        <input type="radio" name="read" id="yes" value=1>
-        <label for="yes">Yes</label>
+        <div class="author">
+          <label for="author">Author</label>
+          <input type="text" name="author" id="author" required>
+        </div>
+    
+        <div class="pages">
+          <label for="pages">Pages</label>
+          <input type="number" name="pages" id="pages">
+        </div>
+        <fieldset>
+          <legend>Have you finished the book?</legend>
+          <ul>
+            <li class="read">
+              <input type="radio" name="read" id="yes" value=1>
+              <label for="yes">Yes</label>
+            </li>
+            <li class="not-read">
+              <input type="radio" name="read" id="no" value=''>
+              <label for="no">No</label>
+            </li>
+          </ul>
+        </fieldset>
+        <button type="submit" class="submit-book">Add to library</button>
       </div>
-
-      <div class="not-read">
-        <input type="radio" name="read" id="no" value=0>
-        <label for="no">No</label>
-      </div>
-
-    </fieldset>
-    <button type="submit" class="submit-book">Add Book</button>
-  </form>
+    </form>
+  </div>
   <script src="library.js"></script>
 </body>
 </html>

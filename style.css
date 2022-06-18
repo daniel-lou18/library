@@ -1,12 +1,23 @@
 html {
-  font-family: sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+li {
+  list-style: none;
+}
+
+.container {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 table {
   border-collapse: collapse;
   border: 2px solid rgb(200,200,200);
   letter-spacing: 1px;
-  font-size: 0.8rem;
+  font-size: 1.1rem;
+  width: 100%;
 }
 
 td, th {
@@ -32,4 +43,86 @@ tr:nth-child(odd) td {
 
 caption {
   padding: 10px;
+}
+
+form[name="form-add-book"] {
+  display: none;
+}
+
+button[data-row-num] {
+  padding: 4px 8px;
+  border: none;
+  background-color: transparent;
+}
+
+button[data-row-num]:hover {
+  border-radius: 25px;
+  font-weight: bold;
+}
+
+button[data-row-num]:first-child {
+  margin-right: 8px;
+}
+
+.wrapper {
+  width: min(900px, 100%);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  font-size: 1rem;
+}
+
+div.author {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+
+div.pages {
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+}
+
+.wrapper > div {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+}
+
+.wrapper label {
+  align-self: center;
+}
+
+.wrapper input, .wrapper fieldset {
+  border: 2px solid rgb(200,200,200);
+  letter-spacing: 1px;
+  border-radius: 5px;
+  font: 1rem sans-serif;
+}
+
+fieldset {
+  grid-column: 2 / 3;
+  grid-row: 1 / 4;
+  border: 1px solid grey;
+}
+
+.wrapper button, button.add-book {
+  padding: 8px 16px;
+  border-color: rgb(245,245,245);
+  border-radius: 5px;
+
+  font-family: Helvetica, sans-serif;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.wrapper button:hover, button.add-book:hover {
+  background-color: rgb(230,230,230);
+  border-color: rgb(220,220,220);
+}
+
+button.add-book {
+  margin-top: 8px;
+}
+
+.wrapper button {
+  height: 45px;
 }
