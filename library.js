@@ -1,19 +1,59 @@
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-  this.info = function() {
-    if (read) {
-      return `${this.title} by ${this.author}, ${this.pages} pages, read`;
+class Book {
+  constructor(title, author, pages, read) {
+    this._title = title;
+    this._author = author;
+    this._pages = pages;
+    this._read = read;
+  }
+
+  get title() {
+    return this._title
+  }
+
+  set title(newTitle) {
+    this._title = newTitle
+  }
+
+  get author() {
+    return this._author
+  }
+
+  set author(newAuthor) {
+    this._author = newAuthor
+  }
+
+  get pages() {
+    return this._pages
+  }
+
+  set pages(newPages) {
+    this._pages = newPages
+  }
+
+  get read() {
+    return this._read
+  }
+
+  set read(newRead) {
+    this._read = newRead
+  }
+
+  readText() {
+    if (!this._read) {
+      return 'read'
     } else {
-      return `${this.title} by ${this.author}, ${this.pages} pages, not read yet`;
+      return 'not read yet'
     }
+  }
+  
+  info() {
+      return `${this._title} by ${this._author}, ${this._pages} pages, ${this.readText()}`;
   }
 };
 
 const Library = (function() {
   let myLibrary = [];
+  const getMyLibrary = () => myLibrary;
 
   function addBookToLibrary(book) {
     myLibrary.push(book);
@@ -73,7 +113,7 @@ const Library = (function() {
     myLibrary[`${e.target.dataset.rowNum}`].read = !myLibrary[`${e.target.dataset.rowNum}`].read;
     displayLibrary();
   }
-  return {addBookToLibrary, displayLibrary}
+  return {getMyLibrary, addBookToLibrary, displayLibrary}
 })();
 
 const siddhartha = new Book('Siddhartha', 'Hermann Hesse', 300, true);
@@ -84,22 +124,23 @@ Library.addBookToLibrary(aneantir);
 Library.addBookToLibrary(gallico);
 Library.displayLibrary();
 
-const form = document.querySelector('#form-add-book');
-form.addEventListener('submit', addBook);
-function addBook(e) {
-  const title = document.querySelector('input[name="title"]');
-  const author = document.querySelector('input[name="author"]');
-  const pages = document.querySelector('input[name="pages"]');
-  const read = document.querySelector('input[name="read"]:checked');
-  const book = new Book(title.value, author.value, pages.value, Boolean(read.value));
-  addBookToLibrary(book);
-  console.log(myLibrary);
-  displayLibrary();
-  e.preventDefault();
-};
+const Form = (function() {
+  const showForm = document.querySelector('.add-book');
+  showForm.addEventListener('click', function(e) {
+    form.style.display = 'block';
+  });
 
-const showForm = document.querySelector('.add-book');
-showForm.addEventListener('click', function(e) {
-  form.style.display = 'block';
-});
-
+  const form = document.querySelector('#form-add-book');
+  form.addEventListener('submit', addBook);
+  function addBook(e) {
+    const title = document.querySelector('input[name="title"]');
+    const author = document.querySelector('input[name="author"]');
+    const pages = document.querySelector('input[name="pages"]');
+    const read = document.querySelector('input[name="read"]:checked');
+    const book = new Book(title.value, author.value, pages.value, Boolean(read.value));
+    Library.addBookToLibrary(book);
+    console.log(Library.getMyLibrary());
+    Library.displayLibrary();
+    e.preventDefault();
+  };
+})();
